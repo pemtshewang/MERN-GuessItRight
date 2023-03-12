@@ -9,10 +9,12 @@ class Database {
     try {
       await mongoose.connect(process.env.MONGODB_URI, {
         useUnifiedTopology: true,
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        dbName: "wordsDB"
       })
       console.log("Connection to the database succeeded")
     } catch (err) {
+      console.log(err)
       console.log("Connection to the database failed")
     }
   }

@@ -3,15 +3,29 @@ import Input from './components/Input'
 import Lives from './components/Lives'
 import { useState, useEffect } from 'react'
 import Footer from './components/Footer'
+import axios from "axios"
 
-const word = {
-  word: "Python",
-  hint: "The Intelligent Reptile",
-  score: 10
-};
+const getWord = async() =>{
+  let response;
+  try{
+    response = await axios.get("/word/random")
+    
+  }catch(err){
+    console.log(err)
+    return false;
+  }
+  return response.data
+}
+
 function App() {
   const [totalLives, setTotalLives] = useState(5);
+  
   const [won, setWin] = useState(false)
+  const [word,setWord] = useState("")
+
+  useEffect(()=>{
+    setWord(getWord())
+  }, [])
   // prevent the window from reloading two times
   useEffect(() => {
     if (won) {
@@ -39,7 +53,7 @@ function App() {
         <b>{word.hint}</b>
       </div>
       <div className='container__app__input'>
-        <Input totalLives={totalLives} updateLives={setTotalLives} updateWin={setWin} />
+        <Input totalLives={totalLives} updateLives={setTotalLives} updateWin={setWin} word={word} />
       </div>
       <Footer />
     </div >

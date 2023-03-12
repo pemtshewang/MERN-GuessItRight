@@ -1,10 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 
-const word = {
-  word: "python",
-  hint: "The Intelligent Reptile",
-  score: 10
-};
 
 const Input = (props) => {
   const inputRef = useRef(null);
@@ -14,7 +9,7 @@ const Input = (props) => {
 
   const [chars, setChars] = useState(() => {
     const charsFromWord = {};
-    Array.from(word.word).forEach((char, index) => {
+    Array.from(props.word.word).forEach((char, index) => {
       charsFromWord[`char_${index}`] = "";
     });
     return charsFromWord;
@@ -23,7 +18,7 @@ const Input = (props) => {
   const cmpChars = () => {
     const keys = Object.keys(chars)
     for (let index = 0; index < keys.length; index++) {
-      if (chars[keys[index]] !== word.word[index]) {
+      if (chars[keys[index]] !== props.word.word[index]) {
         return false
       }
     }
@@ -37,7 +32,7 @@ const Input = (props) => {
     if (inputRef.current.value !== "") {
       let isMatched = false;
       const newChars = { ...chars };
-      Array.from(word.word).forEach((char, index) => {
+      Array.from(props.word.word).forEach((char, index) => {
         if (inputRef.current.value === char) {
           newChars[`char_${index}`] = char;
           isMatched = true;
@@ -68,7 +63,7 @@ const Input = (props) => {
   return (
     <div className="container__enter">
       <div className="container__input">
-        {Array.from(word.word).map((char, index) => (
+        {Array.from(props.word.word).map((char, index) => (
           <div key={`char_${index}`}>
             <input
               type="text"
