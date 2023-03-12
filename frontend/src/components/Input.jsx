@@ -24,7 +24,7 @@ const Input = (props) => {
     }
     return true
   }
-  const width = Math.floor(window.innerWidth / word.word.length);
+  const width = Math.floor(window.innerWidth / props.word.word.length);
   const [err, setErr] = useState("");
   const [guessChar, setGuessChar] = useState("");
 

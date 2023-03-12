@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 const mongoose = require('mongoose')
 
 // Creating a singleton object of database connection 

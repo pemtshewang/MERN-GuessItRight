@@ -5,28 +5,33 @@ import { useState, useEffect } from 'react'
 import Footer from './components/Footer'
 import axios from "axios"
 
-const getWord = async() =>{
-  let response;
-  try{
-    response = await axios.get("/word/random")
-    
-  }catch(err){
+const getWord = async () => {
+  try {
+    const response = await axios.get("http://localhost:3500/word/random")
+    return response.data
+  } catch (err) {
     console.log(err)
-    return false;
+    return null;
   }
-  return response.data
+
 }
 
 function App() {
   const [totalLives, setTotalLives] = useState(5);
-  
-  const [won, setWin] = useState(false)
-  const [word,setWord] = useState("")
 
-  useEffect(()=>{
-    setWord(getWord())
+  const [won, setWin] = useState(false)
+  const [word, setWord] = useState("")
+
+  useEffect(() => {
+    const fetchWord = async () => {
+      const wordData = await getWord()
+      if (wordData) {
+        setWord(wordData)
+      }
+    }
+    fetchWord()
   }, [])
-  // prevent the window from reloading two times
+
   useEffect(() => {
     if (won) {
       alert("You won the game")
@@ -36,7 +41,8 @@ function App() {
       alert("You lose the game")
       window.location.reload()
     }
-  }, [won, totalLives])
+  }, [totalLives, won])
+
   return (
     <div className="App">
       <div className='header'>
@@ -48,13 +54,17 @@ function App() {
         </div>
         <Lives count={totalLives} />
       </div>
-      <div className="container__hint">
-        <h4>Hint: </h4>
-        <b>{word.hint}</b>
-      </div>
-      <div className='container__app__input'>
-        <Input totalLives={totalLives} updateLives={setTotalLives} updateWin={setWin} word={word} />
-      </div>
+      {word && (
+        <div className="container__hint">
+          <h4>Hint: </h4>
+          <b>{word.hint}</b>
+        </div>
+      )}
+      {word && (
+        <div className='container__app__input'>
+          <Input totalLives={totalLives} updateLives={setTotalLives} updateWin={setWin} word={word} />
+        </div>
+      )}
       <Footer />
     </div >
   )
