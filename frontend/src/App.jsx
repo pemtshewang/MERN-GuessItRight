@@ -7,8 +7,8 @@ import axios from "axios"
 
 const getWord = async () => {
   try {
-    const response = await axios.get("http://localhost:3500/word/random")
-    return response.data
+    const response = await axios.get("/word/random")
+    return response.data[0]
   } catch (err) {
     console.log(err)
     return null;
