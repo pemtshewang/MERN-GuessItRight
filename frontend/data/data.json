@@ -1,0 +1,42 @@
+[
+  {
+    "word": "Python",
+    "hint": "A high-level, interpreted programming language used for web development, data analysis, and artificial intelligence."
+  },
+  {
+    "word": "Java",
+    "hint": "A popular object-oriented language used for developing desktop and mobile applications, as well as web applications and enterprise software."
+  },
+  {
+    "word": "JavaScript",
+    "hint": "A scripting language primarily used for creating interactive web pages and web applications."
+  },
+  {
+    "word": "C++",
+    "hint": "A high-performance, compiled language used for system programming, game development, and other performance-critical applications."
+  },
+  {
+    "word": "Ruby",
+    "hint": "A dynamic, object-oriented language known for its simplicity and productivity, often used for web development and scripting."
+  },
+  {
+    "word": "Swift",
+    "hint": "A relatively new language developed by Apple, primarily used for developing iOS, macOS, watchOS, and tvOS applications."
+  },
+  {
+    "word": "Go",
+    "hint": "A language developed by Google, designed for concurrency and efficient system-level programming."
+  },
+  {
+    "word": "PHP",
+    "hint": "A server-side scripting language used for web development and server-side programming."
+  },
+  {
+    "word": "Rust",
+    "hint": "A systems programming language designed for speed, safety, and concurrency."
+  },
+  {
+    "word": "SQL",
+    "hint": "A language used for managing relational databases, querying and manipulating data, and managing database structures."
+  }
+]

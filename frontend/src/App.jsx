@@ -1,37 +1,25 @@
 import './App.css'
-import Input from './components/Input'
-import Lives from './components/Lives'
 import { useState, useEffect } from 'react'
 import Footer from './components/Footer'
-import axios from "axios"
+import ThemeToggle from './components/Switch'
+import data from "../data/data.json"
+import NavBar from './components/Header'
 
-const getWord = async () => {
-  try {
-    const response = await axios.get("/word/random")
-    return response.data[0]
-  } catch (err) {
-    console.log(err)
-    return null;
-  }
-
+const getWord = () => {
+  return data;
 }
 
 function App() {
   const [totalLives, setTotalLives] = useState(5);
 
   const [won, setWin] = useState(false)
-  const [word, setWord] = useState("")
+  const [word, setWord] = useState(null)
 
   useEffect(() => {
-    const fetchWord = async () => {
-      const wordData = await getWord()
-      if (wordData) {
-        setWord(wordData)
-      }
-    }
-    fetchWord()
-  }, [])
-
+    setWord(getWord()[0])
+  })
+  
+  // consider the side effects
   useEffect(() => {
     if (won) {
       alert("You won the game")
@@ -45,26 +33,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className='header'>
-        <h1>Guess It Right</h1>
-      </div>
-      <div className="container__lives">
-        <div className="banner">
-          <h3>Lives Remaining</h3>
-        </div>
-        <Lives count={totalLives} />
-      </div>
-      {word && (
-        <div className="container__hint">
-          <h4>Hint: </h4>
-          <b>{word.hint}</b>
-        </div>
-      )}
-      {word && (
-        <div className='container__app__input'>
-          <Input totalLives={totalLives} updateLives={setTotalLives} updateWin={setWin} word={word} />
-        </div>
-      )}
+      <NavBar />
       <Footer />
     </div >
   )

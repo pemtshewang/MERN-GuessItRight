@@ -1,14 +1,15 @@
-import UilHeart from "@iconscout/react-unicons/icons/uil-heart"
-import UilHeartBreak from "@iconscout/react-unicons/icons/uil-heart-break"
-
+import FavoriteIcon from "@mui/icons-material/Favorite"
+import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 const Heart = (props) => {
   if (!props.dropped) {
     return (
-      <UilHeart color="#ff0000" size="35px" />
+      <FavoriteIcon sx={{ color: "#ff0000",
+      fontSize: 32 }} />
     )
   } else {
     return (
-      <UilHeartBreak color="#fff" size="35px" />
+      <HeartBrokenIcon  sx={{ color: "#ff0000" , 
+      fontSize: 32 }}/>
     )
   }
 }
